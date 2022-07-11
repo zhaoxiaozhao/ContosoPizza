@@ -2,21 +2,21 @@ name: cicddemo
 
 on: push
 
-jobs: 
-  job_1:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        dotnet-version: ['6.0.x' ]
+  jobs: 
+    build:
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          dotnet-version: '6.0.x'
 
-    steps: 
-       - uses: actions/checkout@v3
-       - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
-         uses: actions/setup-dotnet@v2
-         with:
-           dotnet-version:${{ matrix.dotnet-version }}
-       - name: Install Dependencies
-         run: dotnet restore
-       - name: Test with dotnet
-         run: dotnet test 
+      steps: 
+        - uses: actions/checkout@v3
+        - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+          uses: actions/setup-dotnet@v2
+          with:
+            dotnet-version:${{ matrix.dotnet-version }}
+        - name: Install Dependencies
+          run: dotnet restore
+        - name: Test with dotnet
+          run: dotnet test 
          
